@@ -1,3 +1,39 @@
+import { _event } from "./utils/_event";
+
+class _projName {
+    constructor(props) {
+        if(window._projName) return;
+        window._projName = this;
+
+        this.debug = props.debug || false;
+
+        this.el = {
+            header: document.querySelector('.js-header'),
+            footer: document.querySelector('.js-footer')
+        }
+
+        this.headerHeight = 0;
+        this.footerHeight = 0;
+
+        this.init();
+    }
+
+    init() {
+        // for resize
+        _event.resize(() => this.resize());
+
+        if(this.debug) console.log('_projName', this);
+    }
+
+    resize() {
+        this.headerHeight = this.el.header.offsetHeight;
+        document.body.style.setProperty('--header-height', `${this.headerHeight}px`);
+
+        this.footerHeight = this.el.footer.offsetHeight;
+        document.body.style.setProperty('--footer-height', `${this.footerHeight}px`);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('11ty + Nunjucks + Tailwind Template');
+    new _projName({debug: true});
 });

@@ -9,9 +9,10 @@ const isWatch = process.argv.includes("--watch");
 const ctx = await esbuild.context({
   entryPoints: ["src/assets/js/script.js"],
   bundle: true,
-  minify: true,
+  minify: false,
   sourcemap: true,
   outfile: "public/assets/js/script.js",
+  format: "iife",
   target: ["es2020"],
 });
 
