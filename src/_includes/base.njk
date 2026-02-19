@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title | safe }}</title>
+    <title>{{ title | default('11ty + Nunjucks + Tailwind Template') | safe }}</title>
 
     <link rel="stylesheet" href="/assets/css/style.css" media="all" />
 </head>
@@ -15,5 +15,7 @@
     <footer>
         footer
     </footer>
+
+    <script src="/assets/js/script.js" type="module"></script>
 </body>
 </html>
