@@ -2,8 +2,8 @@
 
 ### Requirements
 
--   Node.js v18 or later
--   pnpm v10 or later
+-   Node.js `v18` or later
+-   pnpm `v10` or later
 
 ### Instructions
 
@@ -15,11 +15,11 @@
 ### Troubleshooting
 
 -   If you encounter any issues, ensure that you're using the recommended versions of Node.js and pnpm.
--   If problems persist, try deleting the `/node_modules` folder and the `package-lock.json` file, then run `pnpm install` again.
+-   If problems persist, try deleting the `node_modules` folder and the `package-lock.json` or `pnpm-lock.yaml` file, then run `pnpm install` again.
 
 ### Output
 
-- Nunjucks templates are in `/src/_includes/`.
-- Page content is in `/src/` (eg. index.njk).
-- Raw CSS, JS, and images are in `/src/assets/`.
-- Built files (HTML, CSS, JS, images) are in `/public/`.
+- Nunjucks templates are in `src/_includes/`.
+- Page content is in `src/` (eg. index.njk).
+- Raw CSS, JS, and images are in `src/assets/`.
+- Built files (HTML, CSS, JS, images) are in `public/`.
