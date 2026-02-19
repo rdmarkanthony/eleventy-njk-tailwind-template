@@ -9,7 +9,8 @@ class _projName {
 
         this.el = {
             header: document.querySelector('.js-header'),
-            footer: document.querySelector('.js-footer')
+            footer: document.querySelector('.js-footer'),
+            main: document.querySelector('.js-main-container')
         }
 
         this.headerHeight = 0;
