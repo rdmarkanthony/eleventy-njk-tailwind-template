@@ -1,7 +1,0 @@
-{
-  "tailwindCSS.includeLanguages": {
-    "njk": "html",
-    "twig": "html",
-    "plaintext": "html"
-  }
-}
