@@ -4,18 +4,19 @@ export default function (eleventyConfig) {
     trimBlocks: true,
     lstripBlocks: true,
   });
-  
+
   eleventyConfig.addPassthroughCopy("src/assets/img");
   // eleventyConfig.addPassthroughCopy("src/assets/video");
   // eleventyConfig.addPassthroughCopy("src/assets/data");
 
   return {
+    markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
     templateFormats: ["njk", "html"],
     dir: {
       input: "src",
       output: "public",
-      includes: "_includes"
-    }
+      includes: "_includes",
+    },
   };
 }
