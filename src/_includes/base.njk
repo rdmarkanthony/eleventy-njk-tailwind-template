@@ -45,7 +45,7 @@
 </head>
 <body>
     {{ header() }}
-    <div class="js-main-container min-h-[calc(100vh-var(--header-height,0rem)-var(--footer-height,0rem))]">
+    <div class="main-content min-h-[calc(100vh-var(--header-height,0rem)-var(--footer-height,0rem))]">
         {{ content | safe }}
     </div>
     {% block popup -%}{%- endblock %}
