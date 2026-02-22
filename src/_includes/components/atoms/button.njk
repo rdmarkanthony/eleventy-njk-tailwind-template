@@ -14,7 +14,7 @@
         'block',
         (type == 'primary') and 'p-4 text-base bg-green-600 hover:bg-green-700',
         (type == 'secondary') and 'p-3 text-sm bg-blue-600 hover:bg-blue-700',
-        'text-white'
+        'text-white transition-colors duration-300'
     ]) -%}
 
     {%- set buttonTag = "a" if props.url else "button" -%}

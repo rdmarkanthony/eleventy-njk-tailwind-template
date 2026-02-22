@@ -7,20 +7,21 @@ dotenv.config();
 const isWatch = process.argv.includes("--watch");
 
 const ctx = await esbuild.context({
-  entryPoints: ["src/assets/js/script.js"],
-  bundle: true,
-  minify: false,
-  sourcemap: true,
-  outfile: "public/assets/js/script.js",
-  format: "iife",
-  target: ["es2020"],
+    entryPoints: ["src/assets/js/script.js"],
+    bundle: true,
+    minify: isWatch ? false : true,
+    sourcemap: true,
+    outfile: "public/assets/js/script.js",
+    format: "iife",
+    target: ["es2020"],
 });
 
 if (isWatch) {
-  await ctx.watch();
-  console.log("DEV: Watching JS files for changes...");
+    await ctx.rebuild();
+    await ctx.watch();
+    console.log("DEV: Watching JS files for changes...");
 } else {
-  await ctx.rebuild();
-  await ctx.dispose();
-  console.log("BUILD: JS build complete");
+    await ctx.rebuild();
+    await ctx.dispose();
+    console.log("BUILD: JS build complete");
 }
