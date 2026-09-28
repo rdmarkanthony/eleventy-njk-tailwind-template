@@ -1,0 +1,178 @@
+---
+title: Tabs | Components
+---
+
+{% extends "components.njk" %}
+
+{% block content %}
+<section class="section py-14 md:py-28 bg-slate-950 text-white">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <h1 class="text-5xl md:text-7xl">Tabs</h1>
+    </div>
+</section>
+<section class="section flex flex-col gap-10 py-14 md:py-28">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <div class="flex flex-col gap-6">
+            <div class="js-tabs flex gap-1">
+                <div><a class="block py-2 px-3 border border-gray-500 rounded hover:bg-gray-300 duration-200 [&.js-tabs-active]:border-green-600 [&.js-tabs-active]:bg-green-600 [&.js-tabs-active]:text-white" href="#tab1">tab 1</a></div>
+                <div><a class="block py-2 px-3 border border-gray-500 rounded hover:bg-gray-300 duration-200 [&.js-tabs-active]:border-green-600 [&.js-tabs-active]:bg-green-600 [&.js-tabs-active]:text-white" href="#tab2">tab 2</a></div>
+                <div><a class="block py-2 px-3 border border-gray-500 rounded hover:bg-gray-300 duration-200 [&.js-tabs-active]:border-green-600 [&.js-tabs-active]:bg-green-600 [&.js-tabs-active]:text-white" href="#tab3">tab 3</a></div>
+                <div><a class="block py-2 px-3 border border-gray-500 rounded hover:bg-gray-300 duration-200 [&.js-tabs-active]:border-green-600 [&.js-tabs-active]:bg-green-600 [&.js-tabs-active]:text-white" href="#tab4">tab 4</a></div>
+            </div>
+            <div>
+                <div id="tab1" class="js-tabs-content hidden">
+                    <div class="flex flex-col gap-4 ">
+                        <h2 class="text-3xl md:text-4xl">Tab 1</h2>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero est illo eius laudantium laborum earum culpa corporis vel deleniti, ipsam mollitia quo unde architecto velit, obcaecati vitae nulla odio ab?</p>
+                    </div>
+                </div>
+                <div id="tab2" class="js-tabs-content hidden">
+                    <div class="flex flex-col gap-4 ">
+                        <h2 class="text-3xl md:text-4xl">Tab 2</h2>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio sit excepturi expedita est blanditiis sint natus recusandae, quos molestias minima consectetur maiores, ut eligendi modi quae omnis! Porro, repellat deserunt?</p>
+                    </div>
+                </div>
+                <div id="tab3" class="js-tabs-content hidden">
+                    <div class="flex flex-col gap-4 ">
+                        <h2 class="text-3xl md:text-4xl">Tab 3</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, ea voluptatibus. Minima porro magni modi, quidem, veritatis officiis inventore, sed fugiat earum architecto nihil? Quidem laboriosam voluptas exercitationem voluptatum expedita?</p>
+                    </div>
+                </div>
+                <div id="tab4" class="js-tabs-content hidden">
+                    <div class="flex flex-col gap-4 ">
+                        <h2 class="text-3xl md:text-4xl">Tab 4</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam vel sit tempora sapiente dolorem, quae magni ea amet animi delectus? Ut consectetur sit laborum dicta laudantium nam eligendi, pariatur doloribus?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section flex flex-col gap-10 py-14 md:py-28 bg-slate-50">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <div class="flex flex-col gap-6">
+            <div class="js-tabs flex gap-1">
+                <div><a class="block py-2 px-3 border border-gray-500 rounded hover:bg-gray-300 duration-200 [&.js-tabs-active]:border-green-600 [&.js-tabs-active]:bg-green-600 [&.js-tabs-active]:text-white" href="#tab5">tab 5</a></div>
+                <div><a class="block py-2 px-3 border border-gray-500 rounded hover:bg-gray-300 duration-200 [&.js-tabs-active]:border-green-600 [&.js-tabs-active]:bg-green-600 [&.js-tabs-active]:text-white" href="#tab6">tab 6</a></div>
+                <div><a class="js-tabs-active block py-2 px-3 border border-gray-500 rounded hover:bg-gray-300 duration-200 [&.js-tabs-active]:border-green-600 [&.js-tabs-active]:bg-green-600 [&.js-tabs-active]:text-white" href="#tab7">tab 7</a></div>
+                <div><a class="block py-2 px-3 border border-gray-500 rounded hover:bg-gray-300 duration-200 [&.js-tabs-active]:border-green-600 [&.js-tabs-active]:bg-green-600 [&.js-tabs-active]:text-white" href="#tab8">tab 8</a></div>
+            </div>
+            <div>
+                <div id="tab5" class="js-tabs-content hidden">
+                    <div class="flex flex-col gap-4 ">
+                        <h2 class="text-3xl md:text-4xl">Tab 5</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum veritatis vero sit aliquid dolorum? Repudiandae quasi optio deserunt iure quae a odio, neque adipisci in nesciunt commodi? Hic, aliquam fugiat.</p>
+                    </div>
+                </div>
+                <div id="tab6" class="js-tabs-content hidden">
+                    <div class="flex flex-col gap-4 ">
+                        <h2 class="text-3xl md:text-4xl">Tab 6</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, blanditiis sit illum maiores iste sed animi soluta numquam dolorem eveniet tenetur modi, rerum ratione ab cupiditate nulla totam sapiente at.</p>
+                    </div>
+                </div>
+                <div id="tab7" class="js-tabs-content hidden">
+                    <div class="flex flex-col gap-8">
+                        <div class="flex flex-col gap-4 ">
+                            <h2 class="text-3xl md:text-4xl">Tab 7</h2>
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat sit distinctio nemo harum dignissimos perferendis, totam magni officia molestias veniam dolore repellendus nobis impedit aperiam expedita consequatur eius aliquid qui.</p>
+                        </div>
+                        <div class="flex flex-col gap-6">
+                            <div class="js-tabs flex gap-1">
+                                <div><a class="block py-2 px-3 border border-gray-500 rounded hover:bg-gray-300 duration-200 [&.js-tabs-active]:border-green-600 [&.js-tabs-active]:bg-green-600 [&.js-tabs-active]:text-white" href="#tab9">tab 9</a></div>
+                                <div><a class="block py-2 px-3 border border-gray-500 rounded hover:bg-gray-300 duration-200 [&.js-tabs-active]:border-green-600 [&.js-tabs-active]:bg-green-600 [&.js-tabs-active]:text-white" href="#tab10">tab 10</a></div>
+                                <div><a class="block py-2 px-3 border border-gray-500 rounded hover:bg-gray-300 duration-200 [&.js-tabs-active]:border-green-600 [&.js-tabs-active]:bg-green-600 [&.js-tabs-active]:text-white" href="#tab11">tab 11</a></div>
+                                <div><a class="block py-2 px-3 border border-gray-500 rounded hover:bg-gray-300 duration-200 [&.js-tabs-active]:border-green-600 [&.js-tabs-active]:bg-green-600 [&.js-tabs-active]:text-white" href="#tab12">tab 12</a></div>
+                            </div>
+                            <div>
+                                <div id="tab9" class="js-tabs-content hidden">
+                                    <div class="flex flex-col gap-4 ">
+                                        <h2 class="text-3xl md:text-4xl">Tab 9</h2>
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum quo totam at ex reprehenderit ipsum id natus? Ducimus laborum molestiae sed necessitatibus eos dolor ad, eum magnam provident aspernatur est.</p>
+                                    </div>
+                                </div>
+                                <div id="tab10" class="js-tabs-content hidden">
+                                    <div class="flex flex-col gap-4 ">
+                                        <h2 class="text-3xl md:text-4xl">Tab 10</h2>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero temporibus corrupti earum ex eveniet sint vitae fugit iure aliquid adipisci explicabo nam doloremque distinctio natus quod, dolore quia dolores eos?</p>
+                                    </div>
+                                </div>
+                                <div id="tab11" class="js-tabs-content hidden">
+                                    <div class="flex flex-col gap-4 ">
+                                        <h2 class="text-3xl md:text-4xl">Tab 11</h2>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis impedit accusantium eos hic, nam rerum autem sint repudiandae odit nostrum dignissimos perferendis consectetur eligendi sed veniam vel labore aut inventore?</p>
+                                    </div>
+                                </div>
+                                <div id="tab12" class="js-tabs-content hidden">
+                                    <div class="flex flex-col gap-4 ">
+                                        <h2 class="text-3xl md:text-4xl">Tab 12</h2>
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, doloribus corporis. Quos quae laborum exercitationem, corrupti optio numquam ipsum illo nisi incidunt ad porro, dolores est dolorem aliquid laudantium repellendus.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab8" class="js-tabs-content hidden">
+                    <div class="flex flex-col gap-4 ">
+                        <h2 class="text-3xl md:text-4xl">Tab 8</h2>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio iusto officiis illo voluptas numquam, aspernatur eveniet perferendis tenetur? Consequuntur, error. Repellendus necessitatibus est quas unde perspiciatis aperiam mollitia eligendi dolorum.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block footerscript %}
+<script>
+    document.querySelectorAll('.js-tabs').forEach((item) => {
+        const _item = item;
+        const _nav = _item.querySelectorAll('a');
+        const _contents = [];
+        let _activeNav = 0;
+
+        const _update = (nav, content) => {
+            // change the active nav
+            _nav.forEach((item) => {
+                if(item === nav) {
+                    item.classList.add('js-tabs-active');
+                } else {
+                    item.classList.remove('js-tabs-active');
+                }
+            });
+
+            // change the active content
+            _contents.forEach((item) => {
+                if(item === content) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        _nav.forEach((item, index) => {
+            const _item = item;
+            const _href = _item.getAttribute('href');
+            const _content = document.querySelector(_href);
+
+            if(!_content) return;
+
+            _contents.push(_content); // collect all contents
+
+            // upon click, update the active nav and content
+            _item.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                _update(_item, _content);
+            });
+
+            // get the active nav
+            if(_item.classList.contains('js-tabs-active')) _activeNav = index; 
+        });
+
+        _update(_nav[_activeNav], _contents[_activeNav]); // activate the current nav and content
+    });
+</script>
+{% endblock %}

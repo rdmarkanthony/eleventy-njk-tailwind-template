@@ -1,0 +1,110 @@
+---
+title: Components
+---
+
+{% extends "components.njk" %}
+
+{% block content %}
+{#
+    animated text upon hover
+    https://vercel.com/ship
+#}
+<section class="section py-14 md:py-28 bg-slate-950 text-white">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <h1 class="text-5xl md:text-7xl">Components</h1>
+    </div>
+</section>
+<div class="section py-14 md:py-28">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        {%
+            set components = [
+                {
+                    url: '/components/breakpoints/',
+                    label: 'Breakpoints'
+                },
+                {
+                    url: '/components/animate/',
+                    label: 'Animate'
+                },
+                {
+                    url: '/components/animated-number/',
+                    label: 'Animated number'
+                },
+                {
+                    url: '/components/rolling-number/',
+                    label: 'Rolling number'
+                },
+                {
+                    url: '/components/group-height/',
+                    label: 'Group height'
+                },
+                {
+                    url: '/components/tabs/',
+                    label: 'Tabs'
+                },
+                {
+                    url: '/components/typing-animation/',
+                    label: 'Typing animation'
+                },
+                {
+                    url: '/components/lightbox/',
+                    label: 'Lightbox'
+                },
+                {
+                    url: '/components/countdown-timer/',
+                    label: 'Countdown timer'
+                },
+                {
+                    url: '/components/youtube-player/',
+                    label: 'Youtube player'
+                },
+                {
+                    url: '/components/video-player/',
+                    label: 'Video player'
+                },
+                {
+                    url: '/components/sliders/',
+                    label: 'Sliders'
+                }
+            ]
+        %}
+        <ul class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {% for component in components %}
+                <li><a class="block" href="{{ component.url }}" target="_blank">{{ component.label }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block footerscript %}
+<script>
+    if(typeof gsap !== 'undefined') {
+        let _instance = null;
+
+        let _size = 'small';
+        const _updateCursor = (size = 'small') => {
+            if(size === _size) return;
+            _size = size;
+
+            gsap.to(_instance.el.bg, {
+                width: size === 'big' ? 48 : 16,
+                height: size === 'big' ? 48 : 16,
+                duration: 0.3
+            });
+        }
+
+        _instance = new _cursorBubble({
+            target: document.body,
+            events: {
+                init: (instance) => {
+                    instance.el.main.classList.add('mix-blend-difference');
+                },
+                mousemove: (instance, event) => {
+                    _updateCursor(event.target.tagName.toLowerCase() === 'a' ? 'big' : 'small');
+                }
+            }
+        });
+    }
+</script>
+{% endblock %}

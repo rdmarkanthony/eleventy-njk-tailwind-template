@@ -1,0 +1,29 @@
+---
+title: Breakpoints | Components
+---
+
+{% extends "components.njk" %}
+
+{% block content %}
+<section class="flex items-center justify-center w-screen h-screen bg-slate-500 xxs:bg-red-500 xs:bg-orange-500 sm:bg-yellow-500 md:bg-lime-500 lg:bg-green-500 xl:bg-emerald-500 2xl:bg-teal-500 3xl:bg-blue-500 4xl:bg-violet-500 text-white transition-colors duration-300">
+    <div class="text-center">
+        <div class="hidden xxs:block xs:hidden text-xl">xxs: 0px (small phones)</div>
+        <div class="hidden xs:block sm:hidden text-2xl">xs: 320px (iPhone SE, older Android phones)</div>
+        <div class="hidden sm:block md:hidden text-2xl">sm: 414px (iPhone 11/12/13/14/15, Galaxy S series)</div>
+        <div class="hidden md:block lg:hidden text-3xl">md: 768px (iPad Mini, Galaxy Tab S series)</div>
+        <div class="hidden lg:block xl:hidden text-3xl">lg: 992px (iPad Air, some Surface tablets)</div>
+        <div class="hidden xl:block 2xl:hidden text-4xl">xl: 1024px (iPad Pro 11" landscape, Surface Go)</div>
+        <div class="hidden 2xl:block 3xl:hidden text-5xl">2xl: 1240px (MacBook Air 13", small laptops)</div>
+        <div class="hidden 3xl:block 4xl:hidden text-5xl">3xl: 1440px (MacBook Pro 14", standard desktops)</div>
+        <div class="hidden 4xl:block text-6xl">4xl: 1920px (4K monitors, large desktops)</div>
+    </div>
+    <div class="absolute top-0 left-0 p-4"><span class="js-window-width">0</span> <span>current window width</span></div>
+</section>
+{% endblock %}
+
+{% block footerscript %}
+<script>
+    const _label = document.querySelector('.js-window-width');
+    _event.resize(() => _label.innerHTML = `${window.innerWidth}px`);
+</script>
+{% endblock %}

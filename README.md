@@ -14,7 +14,7 @@
 3. Install dependencies:
    `pnpm install`
 4. Start the development server:
-   `pnpm start`
+   `pnpm dev`
 5. Build for production:
    `pnpm build`
 
@@ -28,4 +28,5 @@
 - Source Nunjucks templates are in `src/_includes/`.
 - Page content is in `src/` (e.g. `index.njk`).
 - Raw CSS, JS, and images are in `src/assets/`.
+- Component demos are in `src/components/` (served at `/components/`). Their utils and libraries are bundled into `script.js` and `style.css`.
 - Compiled HTML, CSS, JS, and images are output to `public/`.

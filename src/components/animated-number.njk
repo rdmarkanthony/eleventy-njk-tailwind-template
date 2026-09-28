@@ -1,0 +1,98 @@
+---
+title: Animated number | Components
+---
+
+{% extends "components.njk" %}
+
+{% block content %}
+<section class="section py-14 md:py-28 bg-slate-950 text-white">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <h1 class="text-5xl md:text-7xl">Animated number</h1>
+    </div>
+</section>
+<section class="section flex flex-col gap-10 py-14 md:py-28">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <div class="js-running-number flex flex-col gap-3">
+            <div class="js-runner-number-label text-6xl md:text-8xl">0</div>
+            <div class="flex gap-2">
+                <div class="w-full"><input class="w-full h-[2.8125rem] py-2 px-3 border border-gray-600 rounded appearance-none text-base" type="tel" inputmode="decimal" name="" value="" placeholder="Please enter number"></div>
+                <div><button class="block min-w-[6.25rem] h-[2.8125rem] py-2 px-3 bg-blue-500 hover:bg-blue-600 rounded text-white duration-150">Go</button></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block footerscript %}
+<script>
+    // Requirements
+        // JS
+            // src/assets/js/utils/_animated-number.js
+            // src/assets/js/utils/_inview.js (optional)
+
+    const _runningNumber = document.querySelector('.js-running-number');
+    const _label = _runningNumber.querySelector('.js-runner-number-label');
+    const _input = _runningNumber.querySelector('input');
+    const _button = _runningNumber.querySelector('button');
+    let _instance = null;
+
+    const _cleanNumber = (value) => {
+        return value.replace(/,/g, "").replace(/[^0-9.]/g, "");
+    }
+
+    // to only allow numbers and decimal points
+    _input.addEventListener('input', (e) => {
+        let _value = _cleanNumber(_input.value);
+        let _parts = _value.split(".");
+        
+        // ensure only one decimal point
+        if (_parts.length >= 2) _value = _parts[0] + "." + _parts.slice(1).join("");
+
+        // limit decimal places to 2
+        if (_parts[1] !== undefined) _parts[1] = _parts[1].slice(0, 2);
+        
+        // format integer part with commas
+        const _integerPart = _parts[0] ? Number(_parts[0]).toLocaleString() : "";
+        const _decimalPart = _parts[1] !== undefined ? "." + _parts[1] : ""; 
+        
+        _input.value = _integerPart + _decimalPart;
+    });
+
+    // upon button click
+    _button.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const _currentValue = _cleanNumber(_label.innerText) || 0;
+        const _value = _cleanNumber(_input.value);
+
+        if(isNaN(_value) || _value.length <= 0 || _instance) return;
+
+        _instance = new _animatedNumber({
+            target: _label,
+            from: parseFloat(_currentValue),
+            to: parseFloat(_value),
+            decimals: parseFloat(_value) % 1 !== 0 ? 2 : null,
+            duration: 500,
+            callback: (animate) => {
+                _instance = null;
+            }
+        });
+    });
+
+    // animate number on inview
+    if(typeof _inview !== 'undefined') {
+        new _inview({
+            target: _label,
+            delay: 500,
+            callback: (inview) => {
+                new _animatedNumber({
+                    target: _label,
+                    from: 0,
+                    to: 1234567890,
+                    duration: 2000
+                })
+            }
+        });
+    }
+</script>
+{% endblock %}

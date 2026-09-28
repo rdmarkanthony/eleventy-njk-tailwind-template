@@ -1,0 +1,30 @@
+---
+title: Pixel slider | Slider | Components
+---
+
+{% extends "components.njk" %}
+
+{% block content %}
+<section class="section py-14 md:py-28 bg-slate-950 text-white">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <h1 class="text-5xl md:text-7xl">Pixel slider</h1>
+    </div>
+</section>
+<section class="section flex flex-col gap-10 py-14 md:py-28">
+    <div class="container md:max-w-[40rem] mx-auto">
+        {# https://store.google.com/sg/product/pixel_9a?hl=en-GB #}
+        <div class="js-pixel-slider relative rounded-3xl overflow-hidden">
+            <div class="js-pixel-slider-item"><img src="/assets/img/sliders/slide1.jpg" alt=""></div>
+            <div class="js-pixel-slider-item"><img src="/assets/img/sliders/slide2.jpg" alt=""></div>
+            <div class="js-pixel-slider-item"><img src="/assets/img/sliders/slide3.jpg" alt=""></div>
+            <div class="js-pixel-slider-item"><img src="/assets/img/sliders/slide4.jpg" alt=""></div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block footerscript %}
+<script>
+    
+</script>
+{% endblock %}

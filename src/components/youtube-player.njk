@@ -1,0 +1,77 @@
+---
+title: Youtube player | Components
+---
+
+{% extends "components.njk" %}
+
+{% block content %}
+<section class="section relative py-14 md:py-28 bg-slate-950 text-white">
+    <div class="relative z-10 container w-[calc(100%-2rem)] mx-auto">
+        <h1 class="text-5xl md:text-7xl">Youtube player</h1>
+    </div>
+    <div class="absolute top-0 left-0 w-full h-full bg-black overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-0 w-full h-full bg-black overflow-hidden" data-yt-player="gPIfZ2Zrv5w,autoplay,stretch"></div>
+        <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50"></div>
+    </div>
+</section>
+<section class="section flex flex-col gap-10 py-14 md:py-28">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="flex flex-col gap-2 md:gap-4">
+                <div class="text-lg md:text-2xl">Standard</div>
+                <div class="relative aspect-video bg-black" data-yt-player="23atch1EPLM"></div>
+            </div>
+            <div class="flex flex-col gap-2 md:gap-4">
+                <div class="text-lg md:text-2xl">Standard</div>
+                <div class="relative aspect-video bg-black" data-yt-player="25QyCxVkXwQ"></div>
+            </div>
+            <div class="flex flex-col gap-2 md:gap-4">
+                <div class="text-lg md:text-2xl">Autoplay</div>
+                <div class="relative aspect-video bg-black" data-yt-player="25QyCxVkXwQ,autoplay">
+                    <div class="z-10 absolute top-0 left-0 w-full h-full"></div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-2 md:gap-4">
+                <div class="text-lg md:text-2xl">Stretched: Square</div>
+                <div class="relative aspect-square bg-black" data-yt-player="25QyCxVkXwQ,autoplay,stretch">
+                    <div class="z-10 absolute top-0 left-0 w-full h-full"></div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-2 md:gap-4">
+                <div class="text-lg md:text-2xl">Stretched: Vertical</div>
+                <div class="relative aspect-[9/16] bg-black" data-yt-player="25QyCxVkXwQ,autoplay,stretch">
+                    <div class="z-10 absolute top-0 left-0 w-full h-full"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block footerscript %}
+<script>
+    // Requirements
+        // JS
+            // src/assets/js/utils/_youtube-player.js
+    
+    document.querySelectorAll('[data-yt-player]').forEach((item) => {
+        const _item = item;
+        const _dataset = _item.dataset.ytPlayer.split(',');
+        
+        const _id = _dataset[0] ? _dataset[0] : null;
+        const _autoplay = _dataset[1] && _dataset[1] === 'autoplay' ? true : false;
+        const _stretch = _dataset[2] && _dataset[2] === 'stretch' ? true : false;
+
+        if(!_id) return;
+        _item.removeAttribute('data-yt-player');
+
+        new _youtubePlayer({
+            target: _item,
+            id: _id,
+            autoplay: _autoplay ? true : false,
+            controls: _autoplay ? false : true,
+            stretch: _stretch,
+        });
+    });
+</script>
+{% endblock %}

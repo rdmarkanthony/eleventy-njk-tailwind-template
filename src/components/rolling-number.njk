@@ -1,0 +1,122 @@
+---
+title: Rolling number | Components
+---
+
+{% extends "components.njk" %}
+
+{% block content %}
+<section class="section py-14 md:py-28 bg-slate-950 text-white">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <h1 class="text-5xl md:text-7xl">Rolling number</h1>
+    </div>
+</section>
+<section class="section flex flex-col gap-10 py-14 md:py-28">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <div class="js-running-number flex flex-col gap-3">
+            <div class="js-runner-number-label flex text-6xl md:text-8xl">0</div>
+            <div class="flex gap-2">
+                <div class="w-full"><input class="w-full h-[2.8125rem] py-2 px-3 border border-gray-600 rounded appearance-none text-base" type="tel" inputmode="decimal" name="" value="" placeholder="Please enter number"></div>
+                <div><button class="block min-w-[6.25rem] h-[2.8125rem] py-2 px-3 bg-blue-500 hover:bg-blue-600 rounded text-white duration-150">Go</button></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block footerscript %}
+<script>
+    // Requirements
+        // JS
+            // popmotion
+            // src/assets/js/utils/_rolling-number.js
+            // src/assets/js/utils/_inview.js (optional)
+
+    const _runningNumber = document.querySelector('.js-running-number');
+    const _label = _runningNumber.querySelector('.js-runner-number-label');
+    const _input = _runningNumber.querySelector('input');
+    const _button = _runningNumber.querySelector('button');
+
+    const _cleanNumber = (value) => {
+        return value.replace(/,/g, "").replace(/[^0-9.]/g, "");
+    }
+
+    const _instances = [];
+    let _animating = false;
+    const _update = (value) => {
+        if(_animating) return;
+        _animating = true;
+
+        const _values = value.toLocaleString("en-US", value % 1 !== 0 ? {minimumFractionDigits: 2, maximumFractionDigits: 2} : {}).split(''); // split the value
+
+        // hide/show digits
+        _instances.forEach((item, index) => {
+            item.target.style.display = index >= _values.length ? 'none' : 'block';
+        });
+
+        // create div container for each digit
+        _values.forEach((item, index) => {
+            if(_instances[index]) return;
+
+            const _div = document.createElement('div');
+            _label.appendChild(_div);
+
+            _instances.push(new _rollingNumber({target: _div, numeric: false}));
+        });
+
+        // animate each digit
+        _values.forEach((item, index) => {
+            const _value = item;
+            const _number = _instances[index];
+
+            _number.roll({
+                from: _number.currentNumber,
+                to: _value,
+                duration: 1000,
+                callback: () => {
+                    _animating = false;
+                }
+            });
+        });
+    }
+
+    // to only allow numbers and decimal points
+    _input.addEventListener('input', (e) => {
+        let _value = _cleanNumber(_input.value);
+        let _parts = _value.split(".");
+        
+        // ensure only one decimal point
+        if (_parts.length >= 2) _value = _parts[0] + "." + _parts.slice(1).join("");
+
+        // limit decimal places to 2
+        if (_parts[1] !== undefined) _parts[1] = _parts[1].slice(0, 2);
+        
+        // format integer part with commas
+        const _integerPart = _parts[0] ? Number(_parts[0]).toLocaleString() : "";
+        const _decimalPart = _parts[1] !== undefined ? "." + _parts[1] : ""; 
+        
+        _input.value = _integerPart + _decimalPart;
+    });
+
+    // upon button click
+    _button.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        const _value = _cleanNumber(_input.value);
+
+        if (!isNaN(_value) && _value.length > 0) _update(parseFloat(_value)); // animate
+    });
+
+    // animate number on inview
+    if(typeof _inview !== 'undefined') {
+        new _inview({
+            target: _label,
+            delay: 500,
+            callback: (inview) => {
+                _label.innerHTML = '';
+
+                _update(123456789.10); // animate
+            }
+        });
+    }
+</script>
+{% endblock %}

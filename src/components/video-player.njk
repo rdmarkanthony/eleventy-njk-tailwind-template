@@ -1,0 +1,97 @@
+---
+title: Video player | Components
+---
+
+{% extends "components.njk" %}
+
+{% block content %}
+<section class="section relative py-14 md:py-28 bg-slate-950 text-white">
+    <div class="relative z-10 container w-[calc(100%-2rem)] mx-auto">
+        <h1 class="text-5xl md:text-7xl">Video player</h1>
+    </div>
+    <div class="absolute top-0 left-0 w-full h-full bg-black overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-0 w-full h-full bg-black overflow-hidden" data-video-player="Lofi_Girl,autoplay,stretch"></div>
+        <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50"></div>
+    </div>
+</section>
+<section class="section flex flex-col gap-10 py-14 md:py-28">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="flex flex-col gap-2 md:gap-4">
+                <div class="text-lg md:text-2xl">Standard</div>
+                <div class="relative aspect-video bg-black" data-video-player="/assets/video/ghibli.mp4"></div>
+            </div>
+            <div class="flex flex-col gap-2 md:gap-4">
+                <div class="text-lg md:text-2xl">Standard</div>
+                <div class="relative aspect-video bg-black" data-video-player="Lofi_Girl"></div>
+            </div>
+            <div class="flex flex-col gap-2 md:gap-4">
+                <div class="text-lg md:text-2xl">Autoplay</div>
+                <div class="relative aspect-video bg-black" data-video-player="ghibli,autoplay">
+                    <div class="z-10 absolute top-0 left-0 w-full h-full"></div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-2 md:gap-4">
+                <div class="text-lg md:text-2xl">Stretch</div>
+                <div class="relative aspect-square bg-black" data-video-player="/assets/video/Lofi_Girl.mp4,autoplay,stretch">
+                    <div class="z-10 absolute top-0 left-0 w-full h-full"></div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-2 md:gap-4">
+                <div class="text-lg md:text-2xl">Stretch</div>
+                <div class="relative aspect-[9/16] bg-black" data-video-player="ghibli,autoplay,stretch">
+                    <div class="z-10 absolute top-0 left-0 w-full h-full"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block footerscript %}
+<script>
+    // Requirements
+        // JS
+            // hls.js (option; for m3u8 videos)
+            // src/assets/js/utils/_video-player.js
+    
+    const _videos = [
+        ['ghibli', '/assets/video/ghibli/ghibli.m3u8'],
+        ['Lofi_Girl', '/assets/video/Lofi_Girl/Lofi_Girl.m3u8'],
+    ]
+    
+    document.querySelectorAll('[data-video-player]').forEach((item) => {
+        const _item = item;
+        const _dataset = _item.dataset.videoPlayer.split(',');
+        
+        let _src = _dataset[0] ? _dataset[0] : null;
+        const _autoplay = _dataset[1] && _dataset[1] === 'autoplay' ? true : false;
+        const _stretch = _dataset[2] && _dataset[2] === 'stretch' ? true : false;
+
+        if(!_src) return;
+        _item.removeAttribute('data-video-player');
+
+        const _video = _videos.find((item) => item[0] === _src);
+        if(_video) _src = _video[1];
+
+        const _player = new _videoPlayer({
+            target: _item,
+            src: _src,
+            autoplay: _autoplay,
+            stretch: _stretch,
+            events: {
+                beforeInit: (instance) => {
+                    if(instance.autoplay) {
+                        instance.el.video.style.transition = 'opacity 0.8s';
+                        instance.el.video.style.opacity = 0;
+                    }
+                }
+            }
+        });
+
+        _player.on('play', (instance) => {
+            instance.el.video.style.opacity = '';
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,214 @@
+---
+title: Group height | Components
+---
+
+{% extends "components.njk" %}
+
+{% block content %}
+<section class="section py-14 md:py-28 bg-slate-950 text-white">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <h1 class="text-5xl md:text-7xl">Group height</h1>
+    </div>
+</section>
+<section class="section flex flex-col gap-10 py-14 md:py-28">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <div class="flex flex-col gap-8">
+            <h2 class="text-3xl md:text-4xl">Group height</h2>
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4" data-gh-parent>
+                <div class="flex flex-col gap-3 p-4 outline-dashed" data-rgh-item>
+                    <p>Column 1</p>
+                    <div class="flex flex-col grow gap-2" data-gh="1,768">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quo alias repellat blanditiis molestiae fuga dolorum vero rem eveniet, voluptatem eos mollitia minus quaerat culpa aperiam consectetur quod neque voluptatibus.</p>
+                        <p><small class="text-green-900"><code>Will have min-height >=768px</code></small></p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-3 p-4 outline-dashed" data-rgh-item>
+                    <p>Column 2</p>
+                    <div class="flex flex-col grow gap-2" data-gh="1">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur illum expedita quibusdam laudantium architecto quaerat, esse hic consequatur illo ipsam ipsa earum. Consequuntur molestiae modi itaque ipsa soluta in consequatur.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-3 p-4 outline-dashed" data-rgh-item>
+                    <p>Column 3</p>
+                    <div class="flex flex-col grow gap-2" data-gh="1,768">
+                        <p>Tempore nostrum quos obcaecati ipsum error nulla placeat magnam voluptatibus odio in animi, cupiditate magni suscipit asperiores consequuntur a, cum, id repellendus.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-3 p-4 outline-dashed" data-rgh-item>
+                    <p>Column 4</p>
+                    <div class="flex flex-col grow gap-2" data-gh="2">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem fugiat dolorem pariatur placeat autem rem magnam, excepturi at voluptatibus ut delectus alias qui consequuntur nisi praesentium soluta eligendi minus id!</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-3 p-4 outline-dashed" data-rgh-item>
+                    <p>Column 5</p>
+                    <div class="flex flex-col grow gap-2" data-gh="2,768">
+                        <p>Quibusdam, optio? Sed explicabo assumenda, quasi doloribus reprehenderit error molestiae iusto vitae tempore distinctio animi non atque enim rem qui! Rerum, eligendi.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-3 p-4 outline-dashed" data-rgh-item>
+                    <p>Column 6</p>
+                    <div class="flex flex-col grow gap-2" data-gh="2">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae voluptatibus doloribus magnam nihil vel asperiores. Dicta at excepturi repellat atque unde molestias aut. Ducimus labore quaerat libero nisi ab eos!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section flex flex-col gap-10 py-14 md:py-28 bg-slate-50">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <div class="flex flex-col gap-8">
+            <h2 class="text-3xl md:text-4xl">Row group height</h2>
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4" data-rgh-parent>
+                <div class="flex flex-col gap-3 p-4 outline-dashed" data-rgh-item>
+                    <p>Column 1</p>
+                    <div class="flex flex-col gap-2" data-rgh="1">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quo alias repellat blanditiis molestiae fuga dolorum vero rem eveniet, voluptatem eos mollitia minus quaerat culpa aperiam consectetur quod neque voluptatibus.</p>
+                    </div>
+                    <div class="flex flex-col gap-2" data-rgh="2">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, molestias ipsa illo libero dolor minus ullam repudiandae nostrum amet praesentium autem nulla ad perspiciatis eos voluptatem ea vero magnam deserunt.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-3 p-4 outline-dashed" data-rgh-item>
+                    <p>Column 2</p>
+                    <div class="flex flex-col gap-2" data-rgh="1">
+                        
+                    </div>
+                    <div class="flex flex-col gap-2" data-rgh="2">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur illum expedita quibusdam laudantium architecto quaerat, esse hic consequatur illo ipsam ipsa earum. Consequuntur molestiae modi itaque ipsa soluta in consequatur.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-3 p-4 outline-dashed" data-rgh-item>
+                    <p>Column 3</p>
+                    <div class="flex flex-col gap-2" data-rgh="1">
+                        <p>Tempore nostrum quos obcaecati ipsum error nulla placeat magnam voluptatibus odio in animi, cupiditate magni suscipit asperiores consequuntur a, cum, id repellendus.</p>
+                    </div>
+                    <div class="flex flex-col gap-2" data-rgh="2">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia laborum beatae architecto eligendi minus reiciendis amet, harum enim modi nesciunt rerum voluptatem molestiae iste corporis sunt velit culpa perspiciatis dolore.</p>
+                    </div>
+                </div>
+                <div class="md:col-span-2 flex flex-col gap-3 p-4 outline-dashed" data-rgh-item>
+                    <p>Column 4</p>
+                    <div class="flex flex-col gap-2" data-rgh="1">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem fugiat dolorem pariatur placeat autem rem magnam, excepturi at voluptatibus ut delectus alias qui consequuntur nisi praesentium soluta eligendi minus id!</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-3 p-4 outline-dashed" data-rgh-item>
+                    <p>Column 5</p>
+                    <div class="flex flex-col gap-2" data-rgh="1">
+                        <p>Quibusdam, optio? Sed explicabo assumenda, quasi doloribus reprehenderit error molestiae iusto vitae tempore distinctio animi non atque enim rem qui! Rerum, eligendi.</p>
+                    </div>
+                </div>
+                <div class="md:col-span-full flex flex-col gap-3 p-4 outline-dashed" data-rgh-item>
+                    <p>Column 6</p>
+                    <div class="flex flex-col gap-2" data-rgh="1">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae voluptatibus doloribus magnam nihil vel asperiores. Dicta at excepturi repellat atque unde molestias aut. Ducimus labore quaerat libero nisi ab eos!</p>
+                    </div>
+                    <div class="flex flex-col gap-2" data-rgh="2">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam fugiat harum praesentium doloremque ducimus at magni ratione mollitia aut voluptatibus ullam, quisquam qui autem! A eveniet officia blanditiis accusamus laudantium!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block footerscript %}
+<script>
+    const _equalHeight = (list, style = 'minHeight') => {
+        if(list.length <= 0) return;
+
+        // clear current height
+        list.forEach((item) => {
+             item.target.style[style] = '';
+        });
+
+        if(list.length <= 1) return;
+        let _commonHeight = 0;
+
+        // get the highest height
+        list.forEach((item) => {
+            const _height = item.target.offsetHeight;
+            if(_height > _commonHeight) _commonHeight = _height;
+        });
+
+        // set the highest height
+        list.forEach((item) => {
+            if(window.innerWidth >= item.within) item.target.style[style] = `${_commonHeight}px`;
+        });
+    }
+
+    _event.resize((status, event) => {
+        if(status === 'resize') return;
+
+        // for group-height
+        document.querySelectorAll('[data-gh-parent]').forEach((item) => {
+            const _parent = item;
+            const _items = _parent.querySelectorAll('[data-gh]');
+            const _groups = [];
+
+            // group the items
+            _items.forEach((item) => {
+                const _item = item;
+                const _dataset = _item.dataset.gh.split(',');
+
+                const _group = _dataset[0] ? _dataset[0] : 0;
+                const _within = _dataset[1] && parseFloat(_dataset[1]) ? parseFloat(_dataset[1]) : 0;
+
+                if(!_groups[_group]) _groups[_group] = [];
+                _groups[_group].push({
+                    target: _item,
+                    within: _within
+                });
+            });
+
+            // equalize the height
+            _groups.forEach((item) => _equalHeight(item));
+        });
+
+        // for row group-height
+        document.querySelectorAll('[data-rgh-parent]').forEach((item) => {
+            const _parent = item;
+            const _items = _parent.querySelectorAll('[data-rgh-item]');
+            const _groups = [];
+
+            // group the items based on their top position
+            _items.forEach((item) => {
+                const _item = item;
+                const _dataset = _item.dataset.rgh;
+                const _group = _item.offsetTop;
+
+                if(!_groups[_group]) _groups[_group] = [];
+                _groups[_group].push(_item);
+            });
+
+            _groups.forEach((item) => {
+                const _subGroupds = [];
+
+                item.forEach((item) => {
+                    const _parent = item;
+                    const _items = _parent.querySelectorAll('[data-rgh]');
+
+                    _items.forEach((item) => {
+                        const _item = item;
+                        const _dataset = _item.dataset.rgh.split(',');
+
+                        const _group = _dataset[0] ? _dataset[0] : 0;
+                        const _within = _dataset[1] && parseFloat(_dataset[1]) ? parseFloat(_dataset[1]) : 0;
+
+                        if(!_subGroupds[_group]) _subGroupds[_group] = [];
+                        _subGroupds[_group].push({
+                            target: _item,
+                            within: _within
+                        });
+                    });
+                });
+
+                _subGroupds.forEach((item) => _equalHeight(item));
+            });
+        });
+    });
+</script>
+{% endblock %}

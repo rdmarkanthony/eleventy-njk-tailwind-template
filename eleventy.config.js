@@ -7,6 +7,11 @@ export default function (eleventyConfig) {
         lstripBlocks: true,
     });
 
+    // show network url for other devices
+    eleventyConfig.setServerOptions({
+        showAllHosts: true,
+    });
+
     // watch css change
     eleventyConfig.addWatchTarget("src/assets/css/");
 

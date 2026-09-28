@@ -1,0 +1,30 @@
+---
+title: Sliders | Components
+---
+
+{% extends "components.njk" %}
+
+{% block content %}
+<section class="section py-14 md:py-28 bg-slate-950 text-white">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <h1 class="text-5xl md:text-7xl">Sliders</h1>
+    </div>
+</section>
+<div class="section py-14 md:py-28">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        {%
+            set components = [
+                {
+                    url: '/components/sliders/pixel-slider/',
+                    label: 'Pixel slider'
+                }
+            ]
+        %}
+        <ul class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {% for component in components %}
+                <li><a class="block" href="{{ component.url }}" target="_blank">{{ component.label }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

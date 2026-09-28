@@ -1,0 +1,75 @@
+---
+title: Typing animation | Components
+---
+
+{% extends "components.njk" %}
+
+{% block content %}
+<section class="section py-14 md:py-28 bg-slate-950 text-white">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <h1 class="js-typing text-5xl md:text-7xl"></h1>
+    </div>
+</section>
+<section class="section flex flex-col gap-10 py-14 md:py-28">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <div class="flex flex-col gap-4">
+            <div>
+                <p>
+                    You can try this in your browser's
+                    <i>inspect element</i>
+                    window
+                </p>
+                <code class="text-pink-500">
+                    const typing = new _typing({target: document.querySelector('.js-typing')});
+                </code>
+            </div>
+            <div>
+                <p>// Put text</p>
+                <code class="text-pink-500">typing.text = 'New Message';</code>
+            </div>
+            <div>
+                <p>// Start the typing</p>
+                <code class="text-pink-500">typing.start();</code>
+            </div>
+            <div>
+                <p>// Erase the text</p>
+                <code class="text-pink-500">typing.erase();</code>
+            </div>
+            <div>
+                <p>// Clear the text</p>
+                <code class="text-pink-500">typing.clear();</code>
+            </div>
+            <div>
+                <p>// Show the cursor</p>
+                <code class="text-pink-500">typing.showCursor();</code>
+            </div>
+            <div>
+                <p>// Hide the cursor</p>
+                <code class="text-pink-500">typing.hideCursor();</code>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block footerscript %}
+<script>
+    const typing = new _typing({ target: document.querySelector(".js-typing") });
+
+    setTimeout(() => {
+        typing.text = "Hello world!";
+        typing.start(() => {
+            setTimeout(() => {
+                typing.erase(() => {
+                    typing.text = "Typing animation";
+                    typing.start((instance) => {
+                        setTimeout(() => {
+                            instance.hideCursor();
+                        }, 5000);
+                    });
+                });
+            }, 1000);
+        });
+    }, 500);
+</script>
+{% endblock %}

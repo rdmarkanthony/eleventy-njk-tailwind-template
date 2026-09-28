@@ -1,0 +1,254 @@
+---
+title: Lightbox | Components
+---
+
+{% extends "components.njk" %}
+
+{% block content %}
+<section class="section py-14 md:py-28 bg-slate-950 text-white">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <h1 class="text-5xl md:text-7xl">Lightbox</h1>
+    </div>
+</section>
+<section class="section py-14 md:py-28">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <div class="flex flex-col md:flex-row gap-3">
+            <a class="block py-2 px-4 bg-green-600 hover:bg-green-700 text-white" href="#sample-lightbox" data-lightbox>Open a lightbox</a>
+            <a class="block py-2 px-4 bg-green-600 hover:bg-green-700 text-white" href="#sample-lightbox" target="_blank" data-lightbox>Open a lightbox in new tab</a>
+            <a class="block py-2 px-4 bg-green-600 hover:bg-green-700 text-white" href="#" data-lightbox>Open a neutral lightbox</a>
+        </div>
+        <div class="hidden mt-10">
+            <div id="sample-lightbox" class="lightbox-content relative container mx-auto px-4 md:px-8 py-4 md:py-12 bg-white rounded-2xl">
+                <div class="flex flex-col gap-8">
+                    <h2 class="text-3xl md:text-4xl">Lightbox Usage Guide</h2>
+                    <div class="flex flex-col gap-2">
+                        <p>Opening a Lightbox:</p>
+                        <ul class="list-disc list-inside ml-1">
+                            <li>Open a <a class="link-underline hover:text-blue-600" data-lightbox="modal" href="#sample-modal">new lightbox</a> without closing the current one.</li>
+                            <li>Click <a class="link-underline hover:text-blue-600" data-lightbox href="#sample-lightbox2">this link</a> to open a new lightbox.</li>
+                            <li>Trigger a new lightbox through the script: <code class="text-pink-500">new _lightbox({ target: '#sample-lightbox2' });</code></li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <p>Closing a Lightbox:</p>
+                        <ul class="list-disc list-inside ml-1">
+                            <li>Press the <code class="text-pink-500">Escape</code> key.</li>
+                            <li>Click the <code class="text-pink-500">X</code> at the top-right corner of the page.</li>
+                            <li>
+                                Use the script: <code class="text-pink-500">_lightbox.close();</code> or
+                                <code class="text-pink-500">.close('all');</code>.
+                            </li>
+                            <li>
+                                Click this
+                                <a class="link-underline hover:text-blue-600" onclick="_lightbox.close(); event.preventDefault();" href="#"
+                                    >link</a
+                                >.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-6">
+                        <div class="text-center">
+                            <a
+                                class="inline-block min-w-32 py-2 px-3 bg-blue-400 hover:bg-blue-500 text-white rounded"
+                                onclick="_lightbox.close(); event.preventDefault();"
+                                href="#"
+                                >Close</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="sample-modal" class="lightbox-content relative container md:w-[64rem] mx-auto px-4 md:px-8 py-4 md:py-12 bg-white rounded-2xl">
+                <div class="section-par text-center">
+                    <p>
+                        This is a sample modal or small lightbox. With this, the previous lightbox won't close, but you have
+                        the option to
+                        <a class="link-underline hover:text-blue-600" onclick="_lightbox.close(); event.preventDefault();" href="#"
+                            >close just this one</a
+                        >
+                        or
+                        <a class="link-underline hover:text-blue-600" onclick="_lightbox.close('all'); event.preventDefault();" href="#"
+                            >all opened lightboxs</a
+                        >.
+                    </p>
+                    <div class="flex flex-col md:flex-row gap-4 justify-center mt-10">
+                        <div>
+                            <a
+                                class="block min-w-32 py-2 px-3 bg-blue-400 hover:bg-blue-500 text-white rounded"
+                                onclick="_lightbox.close(); event.preventDefault();"
+                                href="#"
+                                >Close this modal</a
+                            >
+                        </div>
+                        <div>
+                            <a
+                                class="block min-w-32 py-2 px-3 bg-blue-400 hover:bg-blue-500 text-white rounded"
+                                onclick="_lightbox.close('all'); event.preventDefault();"
+                                href="#"
+                                >Close all lightbox</a
+                            >
+                        </div>
+                        <div>
+                            <a class="block min-w-32 py-2 px-3 bg-blue-400 hover:bg-blue-500 text-white rounded" data-lightbox href="#sample-lightbox2"
+                                >Close all of the lightboxs and open a new one</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="sample-lightbox2" class="lightbox-content relative container w-[64rem] mx-auto px-4 md:px-8 py-4 md:py-12 bg-white rounded-2xl">
+                <div class="section-par text-center">
+                    <h2>
+                        This is the second sample lightbox. Alternatively, you may want to open
+                        <a class="link-underline hover:text-blue-600" data-lightbox href="#sample-lightbox3">another lightbox</a> with very
+                        long content.
+                    </h2>
+                    <div class="mt-10 mb-0">
+                        <div class="text-center">
+                            <a
+                                class="inline-block min-w-32 py-2 px-3 bg-blue-400 hover:bg-blue-500 text-white rounded"
+                                onclick="_lightbox.close(); event.preventDefault();"
+                                href="#"
+                                >Close</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="sample-lightbox3" class="lightbox-content relative container mx-auto px-4 md:px-8 py-4 md:py-12 bg-white rounded-2xl">
+                <div class="section-par">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam corporis possimus natus! Nemo
+                        laboriosam placeat, sapiente quo, dignissimos sequi expedita odit, quibusdam esse facere maxime
+                        quod tenetur enim dolores qui. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                        Cupiditate culpa accusamus molestias nostrum incidunt tempora recusandae aperiam. At eius
+                        cupiditate sunt, vel exercitationem quod quia! Repellendus sapiente repudiandae laudantium.
+                        Nostrum! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio, dolor sit
+                        accusamus laudantium exercitationem quos nam nostrum cum provident porro mollitia voluptate
+                        libero officiis velit tempore delectus excepturi ea fugiat. Lorem, ipsum dolor sit amet
+                        consectetur adipisicing elit. Perferendis minima facilis, quas, fugiat repellat aliquid rerum
+                        distinctio corrupti unde inventore repellendus, autem facere minus soluta! Facilis nesciunt
+                        necessitatibus quod rerum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos neque
+                        reiciendis quis, asperiores dolore molestiae similique debitis nisi earum maxime dolor, quas
+                        quia laborum, nam aliquid voluptate blanditiis laboriosam ratione? Lorem ipsum, dolor sit amet
+                        consectetur adipisicing elit. Aperiam, molestiae? Cumque, temporibus? Nihil, delectus. Assumenda
+                        et necessitatibus esse quam cupiditate laudantium, temporibus eos optio animi voluptate officia
+                        hic illum a. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt beatae ad ipsa
+                        recusandae iure quae, explicabo deserunt ipsum dolorem nostrum? Ipsum vel magnam veritatis nobis
+                        soluta molestias assumenda quisquam mollitia! Lorem ipsum dolor sit, amet consectetur
+                        adipisicing elit. Delectus adipisci tempore magni, ullam pariatur quo doloremque itaque expedita
+                        ipsa commodi. Consequuntur est, expedita provident itaque odit vero ut minus fugiat! Lorem ipsum
+                        dolor sit amet consectetur, adipisicing elit. Pariatur consectetur obcaecati atque voluptatum
+                        debitis? Odio, harum veritatis inventore, vero neque expedita rem ipsam reprehenderit enim non,
+                        corporis assumenda omnis consequuntur! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Libero, dolorem. Modi alias enim aspernatur deleniti eum nihil placeat doloremque facere dolorem
+                        at fugit perspiciatis aliquid, officia ad quis. Exercitationem, fuga. Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Sequi illo culpa modi facilis, tempora odio aperiam aliquam non
+                        recusandae ipsa neque. Odio, nobis esse! Quibusdam sequi numquam nostrum quaerat rem! Lorem
+                        ipsum dolor sit, amet consectetur adipisicing elit. Eligendi laboriosam tenetur beatae maiores
+                        assumenda repellat a nemo alias unde accusamus, eaque corporis porro illo necessitatibus nihil
+                        perspiciatis hic impedit iste! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni
+                        nisi quibusdam consectetur eum praesentium nobis accusantium obcaecati. Tenetur hic velit quae
+                        repellat nostrum quo tempora quaerat obcaecati delectus. Quae, natus! Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Perferendis, assumenda? Reiciendis modi omnis sunt labore numquam
+                        reprehenderit, veniam expedita maxime deleniti eveniet, ab excepturi quam ipsam unde hic nisi
+                        odit.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam corporis possimus natus! Nemo
+                        laboriosam placeat, sapiente quo, dignissimos sequi expedita odit, quibusdam esse facere maxime
+                        quod tenetur enim dolores qui. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                        Cupiditate culpa accusamus molestias nostrum incidunt tempora recusandae aperiam. At eius
+                        cupiditate sunt, vel exercitationem quod quia! Repellendus sapiente repudiandae laudantium.
+                        Nostrum! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio, dolor sit
+                        accusamus laudantium exercitationem quos nam nostrum cum provident porro mollitia voluptate
+                        libero officiis velit tempore delectus excepturi ea fugiat. Lorem, ipsum dolor sit amet
+                        consectetur adipisicing elit. Perferendis minima facilis, quas, fugiat repellat aliquid rerum
+                        distinctio corrupti unde inventore repellendus, autem facere minus soluta! Facilis nesciunt
+                        necessitatibus quod rerum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos neque
+                        reiciendis quis, asperiores dolore molestiae similique debitis nisi earum maxime dolor, quas
+                        quia laborum, nam aliquid voluptate blanditiis laboriosam ratione? Lorem ipsum, dolor sit amet
+                        consectetur adipisicing elit. Aperiam, molestiae? Cumque, temporibus? Nihil, delectus. Assumenda
+                        et necessitatibus esse quam cupiditate laudantium, temporibus eos optio animi voluptate officia
+                        hic illum a. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt beatae ad ipsa
+                        recusandae iure quae, explicabo deserunt ipsum dolorem nostrum? Ipsum vel magnam veritatis nobis
+                        soluta molestias assumenda quisquam mollitia! Lorem ipsum dolor sit, amet consectetur
+                        adipisicing elit. Delectus adipisci tempore magni, ullam pariatur quo doloremque itaque expedita
+                        ipsa commodi. Consequuntur est, expedita provident itaque odit vero ut minus fugiat! Lorem ipsum
+                        dolor sit amet consectetur, adipisicing elit. Pariatur consectetur obcaecati atque voluptatum
+                        debitis? Odio, harum veritatis inventore, vero neque expedita rem ipsam reprehenderit enim non,
+                        corporis assumenda omnis consequuntur! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Libero, dolorem. Modi alias enim aspernatur deleniti eum nihil placeat doloremque facere dolorem
+                        at fugit perspiciatis aliquid, officia ad quis. Exercitationem, fuga. Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Sequi illo culpa modi facilis, tempora odio aperiam aliquam non
+                        recusandae ipsa neque. Odio, nobis esse! Quibusdam sequi numquam nostrum quaerat rem! Lorem
+                        ipsum dolor sit, amet consectetur adipisicing elit. Eligendi laboriosam tenetur beatae maiores
+                        assumenda repellat a nemo alias unde accusamus, eaque corporis porro illo necessitatibus nihil
+                        perspiciatis hic impedit iste! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni
+                        nisi quibusdam consectetur eum praesentium nobis accusantium obcaecati. Tenetur hic velit quae
+                        repellat nostrum quo tempora quaerat obcaecati delectus. Quae, natus! Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Perferendis, assumenda? Reiciendis modi omnis sunt labore numquam
+                        reprehenderit, veniam expedita maxime deleniti eveniet, ab excepturi quam ipsam unde hic nisi
+                        odit.
+                    </p>
+                </div>
+                <div class="mt-10 mb-0">
+                    <div class="text-center">
+                        <a
+                            class="inline-block min-w-32 py-2 px-3 bg-blue-400 hover:bg-blue-500 text-white rounded"
+                            onclick="_lightbox.close(); event.preventDefault();"
+                            href="#"
+                            >Close</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block footerscript %}
+<script>
+    // Requirements
+        // JS
+            // src/assets/js/utils/_lightbox.js
+
+    document.querySelectorAll('[data-lightbox]').forEach((item) => {
+        const _item = item;
+        const _target = _item.getAttribute('target');
+        if(_target && _target === '_blank') return;
+
+        const _dataset = _item.dataset.lightbox.split(',s')
+        const _modal = _dataset[0] === 'modal' ? true : false;
+
+        _item.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const _href = _item.getAttribute('href');
+            const _target = _href && _href !== '#' ? document.querySelector(_href) : null;
+
+            new _lightbox({
+                target: _target,
+                modal: _modal,
+                events: {
+                    beforeShow: (lightbox) => {
+                        console.log('beforeShow', lightbox);
+                        
+                        // if(lightbox.el.btn.close) lightbox.content.original.appendChild(lightbox.el.btn.close); // can move the close btn inside the lightbox's center content
+                    },
+                    afterShow: (lightbox) => {
+                        console.log('afterShow', lightbox);
+                    },
+                    beforeClose: (lightbox) => {
+                        console.log('beforeClose', lightbox);
+                    },
+                    afterClose: (lightbox) => {
+                        console.log('afterClose', lightbox);
+                    }
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,241 @@
+---
+title: Countdown timer | Components
+---
+
+{% extends "components.njk" %}
+
+{% block content %}
+<section class="section py-14 md:py-28 bg-slate-950 text-white">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <h1 class="text-5xl md:text-7xl">Countdown timer</h1>
+    </div>
+</section>
+<section class="section flex flex-col gap-10 py-14 md:py-28">
+    <div class="container w-[calc(100%-2rem)] mx-auto">
+        <div class="flex flex-col gap-16">
+            <div class="flex flex-col gap-2 text-center">
+                <p>You can change the target date & time</p>
+                <div><input class="js-datetime-picker min-w-[15rem] py-2 px-3 border border-gray-500 rounded" type="text" name="" value="" placeholder="Please select date & time"></div>
+            </div>
+            <div class="js-countdown-timer flex flex-col gap-2 text-center">
+                <p class="text-2xl">Countdown continues till <strong class="js-countdown-timer-label inline-block">--</strong>.</p>
+                <div class="flex gap-8 md:gap-11 justify-center md:text-xl text-center">
+                    <div class="flex flex-col gap-1">
+                        <div class="js-countdown-timer-days flex font-bold text-6xl md:text-8xl">00</div>
+                        <div>days</div>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <div class="js-countdown-timer-hours flex font-bold text-6xl md:text-8xl">00</div>
+                        <div>hours</div>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <div class="js-countdown-timer-minutes flex font-bold text-6xl md:text-8xl">00</div>
+                        <div>minutes</div>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <div class="js-countdown-timer-seconds flex font-bold text-6xl md:text-8xl">00</div>
+                        <div>seconds</div>
+                    </div>
+                </div>
+            </div>
+            <div class="js-countdown-timer flex flex-col gap-2 text-center">
+                <p class="text-2xl">Countdown continues till <strong class="js-countdown-timer-label inline-block">--</strong>.</p>
+                <div class="flex gap-8 md:gap-11 justify-center md:text-xl text-center">
+                    <div class="flex flex-col gap-1">
+                        <div class="js-countdown-timer-days flex font-bold text-6xl md:text-8xl">00</div>
+                        <div>days</div>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <div class="js-countdown-timer-hours flex font-bold text-6xl md:text-8xl">00</div>
+                        <div>hours</div>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <div class="js-countdown-timer-minutes flex font-bold text-6xl md:text-8xl">00</div>
+                        <div>minutes</div>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <div class="js-countdown-timer-seconds flex font-bold text-6xl md:text-8xl">00</div>
+                        <div>seconds</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block footerscript %}
+<script>
+    // Requirements
+        // JS
+            // flatpickr // (optional; for date & time picker)
+            // luxon // to get current date & time
+            // src/assets/js/utils/_countdown-timer.js // for countdown interval
+            // src/assets/js/utils/_rolling-number.js // for animated rolling number
+        // CSS
+            // flatpickr/dist/flatpickr.min.css (optional)
+
+    const _timeZone = 'Asia/Manila';
+    const _currentDateTime = DateTime.now().setZone(_timeZone); // get current date & time
+    const _minDateTime = _currentDateTime.plus({minutes: 3}).set({second: 0}); // set minimum date to select
+
+    const _dateTimePicker = document.querySelector('.js-datetime-picker'); // input; date & time picker
+
+    const _countdowns = []; // _countdownTimer instances
+    const _updateCountdown = (dateTime) => {
+        _countdowns.forEach((countdown) => countdown.destroy()); // destroy current instances
+
+        document.querySelectorAll('.js-countdown-timer').forEach((item, index) => {
+            const _item = item;
+            const _label = {
+                dateTime: _item.querySelector('.js-countdown-timer-label'),
+                days: _item.querySelector('.js-countdown-timer-days'),
+                hours: _item.querySelector('.js-countdown-timer-hours'),
+                minutes: _item.querySelector('.js-countdown-timer-minutes'),
+                seconds: _item.querySelector('.js-countdown-timer-seconds')
+            }
+
+            const _animated = index === 1 ? true : false; // if numbers should animate using _rollingNumber
+            const _rollingNumberInstances = {
+                days: [],
+                hours: [],
+                minutes: [],
+                seconds: []
+            }
+
+            // create _rollingNumber
+            const _createRollingNumber = (value, time, target) => {
+                const _numbers = value.split('');
+
+                _rollingNumberInstances[time].forEach((item, index) => {
+                    item.target.style.display = _numbers.length <= index ? 'block' : 'none'; // show/hide digits depending on _numbers length
+                });
+
+                _numbers.forEach((item, index) => {
+                    if(_rollingNumberInstances[time][index]) return; // if theres existing _rollingNumber for a digit, no need to create again
+
+                    const _div = document.createElement('div'); // create container for _rollingNumber
+                    target.appendChild(_div);
+
+                    // for _rollingNumber max digit 0 to 9
+                    let _maxNumber = 9;
+                    if(time === 'hours' && index === 0) _maxNumber = 2; // 24 is max number of hours (eg. 24 hours)
+                    if((time === 'minutes' || time === 'seconds') && index === 0) _maxNumber = 5; // 59 is max number of minutes and seconds (eg. 59 seconds)
+
+                    // create _rollingNumber instance
+                    _rollingNumberInstances[time].push(
+                        new _rollingNumber({
+                            target: _div,
+                            startNumber: _maxNumber + 1,
+                            maxNumber: _maxNumber,
+                            duration: 250
+                        })
+                    );
+                });
+            }
+
+            // to fix time up to 2 digits
+            const _pad = (value) => {
+                return String(value).padStart(2, '0'); 
+            }
+
+            const _updateLabels = (instance, status) => {
+                if(!_animated) {
+                    // for non-animated time
+                    _label.days.innerHTML = _pad(instance.dateTime.diff.days);
+                    _label.hours.innerHTML = _pad(instance.dateTime.diff.hours);
+                    _label.minutes.innerHTML = _pad(instance.dateTime.diff.minutes);
+                    _label.seconds.innerHTML = _pad(parseInt(instance.dateTime.diff.seconds));
+                } else {
+                    // animate the _rollingNumber for days
+                    const _days = _pad(instance.dateTime.diff.days).split('');
+                    if(_rollingNumberInstances.days.length > 0) _days.forEach((item, index) => {
+                        const _instance = _rollingNumberInstances.days[index];
+                        _instance.roll({from: status === 'init' ? _instance.startNumber : _instance.currentNumber, to: item});
+                    });
+
+                    // for hours
+                    const _hours = _pad(instance.dateTime.diff.hours).split('');
+                    if(_rollingNumberInstances.hours.length > 0) _hours.forEach((item, index) => {
+                        const _instance = _rollingNumberInstances.hours[index];
+                        _instance.roll({from: status === 'init' ? _instance.startNumber : _instance.currentNumber, to: item});
+                    });
+                    
+                    // for minutes
+                    const _minutes = _pad(instance.dateTime.diff.minutes).split('');
+                    if(_rollingNumberInstances.minutes.length > 0) _minutes.forEach((item, index) => {
+                        const _instance = _rollingNumberInstances.minutes[index];
+                        _instance.roll({from: status === 'init' ? _instance.startNumber : _instance.currentNumber, to: item});
+                    });
+                    
+                    // for seconds
+                    const _seconds = _pad(Math.floor(instance.dateTime.diff.seconds)).split('');
+                    if(_rollingNumberInstances.seconds.length > 0) _seconds.forEach((item, index) => {
+                        const _instance = _rollingNumberInstances.seconds[index];
+                        _instance.roll({from: status === 'init' ? _instance.startNumber : _instance.currentNumber, to: item});
+                    });
+                }
+            }
+
+            // create _countdownTimer instance
+            const _countdown = new _countdownTimer({
+                dateTime: dateTime,
+                timeZone: _timeZone,
+                events: {
+                    beforeInit: (instance) => {
+                        // display the target date & time
+                        _label.dateTime.parentNode.style.display = 'block';
+                        _label.dateTime.innerHTML = instance.dateTime.target.toFormat("MMMM d, yyyy hh:mm a");
+                    },
+                    afterInit: (instance) => {
+                        if(_animated) {
+                            // if animated, create _rollingNumber instance for days
+                            _label.days.innerHTML = '';
+                            _createRollingNumber(_pad(instance.dateTime.diff.days), 'days', _label.days);
+
+                            // for hours
+                            _label.hours.innerHTML = '';
+                            _createRollingNumber(_pad(instance.dateTime.diff.hours), 'hours', _label.hours);
+                            
+                            // for minutes
+                            _label.minutes.innerHTML = '';
+                            _createRollingNumber(_pad(instance.dateTime.diff.minutes), 'minutes', _label.minutes);
+                            
+                            // for seconds
+                            _label.seconds.innerHTML = '';
+                            _createRollingNumber(_pad(Math.floor(instance.dateTime.diff.seconds)), 'seconds', _label.seconds);
+                        }
+
+                        _updateLabels(instance, 'init'); // update time labels or re-roll _rollingNumber
+                    },
+                    update: (instance) => {
+                        _updateLabels(instance); // update time labels or re-roll _rollingNumber
+                    },
+                    end: (instance) => {
+                        if(!instance.dateTime.ended) return; // if countdown has been destroyed, dont proceed
+
+                        // if ended, hide date & time's label and picker
+                        _label.dateTime.parentNode.style.display = 'none';
+                        _dateTimePicker.parentNode.parentNode.style.display = 'none';
+                    }
+                }
+            });
+
+            _countdowns.push(_countdown); // keep all _countdownTimer
+        });
+    }
+    _updateCountdown(_minDateTime); // init countdown
+
+    // for date & time picker
+    flatpickr(_dateTimePicker, {
+        enableTime: true,
+        dateFormat: 'F j, Y h:i K',
+        defaultDate: new Date(_minDateTime),
+        minDate: new Date(_minDateTime),
+        onClose: (selectedDates) => {
+            if (!selectedDates.length) return;
+            _updateCountdown(DateTime.fromJSDate(selectedDates[0]).setZone(_timeZone));
+        }
+    });
+</script>
+{% endblock %}
