@@ -13,28 +13,19 @@ class _projName {
             main: document.querySelector(".main-content"),
         };
 
-        this.headerHeight = 0;
-        this.footerHeight = 0;
-
         this.init();
     }
 
     init() {
         // for resize
-        _event.resize(() => this.resize());
+        _event.resize((state) => this.resize(state));
 
         if (this.debug) console.log("_projName", this);
     }
 
-    resize() {
-        this.headerHeight = this.el.header.offsetHeight;
-        document.body.style.setProperty("--header-height", `${this.headerHeight}px`);
-
-        this.footerHeight = this.el.footer.offsetHeight;
-        document.body.style.setProperty("--footer-height", `${this.footerHeight}px`);
+    resize(state) {
+        // states: init, ready, resize, after
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    new _projName({ debug: true });
-});
+new _projName({ debug: true });
