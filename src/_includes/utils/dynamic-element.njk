@@ -2,7 +2,7 @@
     {%- set attrString = "" -%}
     {%- for key, value in attrs -%}
         {%- if value -%}
-            {%- set attrString = attrString + " " + key + '="' + value + '"' -%}
+            {%- set attrString = attrString + " " + key + '="' + (value | escape) + '"' -%}
         {%- endif -%}
     {%- endfor -%}
     {%- set openTag = "<" + tag + attrString + extraAttrs + ">" -%}
